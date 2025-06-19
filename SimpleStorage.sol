@@ -17,6 +17,11 @@ contract SimpleStorage {
         string name;
     }
 
+    // creating mapping
+    // sachit -> 21
+    // if soem key is not added then the mapping will set it defualt to 0 kinda like an empty var
+    mapping(string => uint256) public nameToFavourateNumber; 
+
     Person[] public listOfPeople;
 
     // creating a person
@@ -42,9 +47,22 @@ contract SimpleStorage {
     }
 
     // Creating a function to add person to the array
-    function addPerson(string memory name, uint256 _favouriteNumber) public {
-        listOfPeople.push(Person(_favouriteNumber, name));
+
+    // callData, memory, storage
+    // Calldata and memory means that variable will only exist for duraiton of the funciton called. we can access for only time we call this function
+    // why hava 2 then? calldata are temp varibales which can not be modified
+    // so if i take in name as input and later on in the fucntiin i set name="sachit" then the code will give error
+    // whereas we can do the same with memory. we do not need to use it for uint vars. only for arrays and we know that string is an array of chars
+    // 
+    function addPerson(string memory _name, uint256 _favouriteNumber) public {
+        listOfPeople.push(Person(_favouriteNumber, _name));
+        nameToFavourateNumber[_name] = _favouriteNumber;
     }
+
+    // gass will only be used when we are updating the state of the contract. when we fetch any view values, no gass will be used
+
+
+
 
 
 }
