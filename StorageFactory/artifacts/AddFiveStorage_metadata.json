@@ -6,8 +6,32 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "chhavi",
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_favouriteNumber",
+						"type": "uint256"
+					}
+				],
+				"name": "addPerson",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listOfPeople",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -18,6 +42,25 @@
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "nameToFavourateNumber",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -58,7 +101,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_favoriteNumber",
+						"name": "_newNumber",
 						"type": "uint256"
 					}
 				],
@@ -81,7 +124,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"SimpleStorage.sol": "SimpleStorage"
+			"StorageFactory/AddFiveStorage.sol": "AddFiveStorage"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -95,12 +138,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"SimpleStorage.sol": {
-			"keccak256": "0xec4b612021ac225fb214bd5ae5e68d5e7ca16122dbbf6372950c4fba5225019c",
+		"SimpleStorage/SimpleStorage.sol": {
+			"keccak256": "0x07099283b7223d4c3295907fa99d53a6a0ec44ce48d9c9c5bd3b2089cfb54431",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://670fd408d52ddf853edea06444005d4a9c763e0af9e8af9b5e3491f240405f3e",
-				"dweb:/ipfs/QmTcuyVSSq4YRiQdERjRvLHYBEyQndiNpsTqALg8U1VxuW"
+				"bzz-raw://f2989806a7af166d5aade5cc455c7b299dbe74ab7ce551d05fe489a2bdc7ac90",
+				"dweb:/ipfs/Qmc2nGN4YHkQ1mKGhrppg8ZnvfZe51y9vYyAD3M5mkd2TM"
+			]
+		},
+		"StorageFactory/AddFiveStorage.sol": {
+			"keccak256": "0x5727551be29849570b50bc375577467fa152d80ff5b82d596da50919514d866a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8dbccc53d6db6a65e4225ac976695f054ac4aaf4953fe51744e2c361cc2f8122",
+				"dweb:/ipfs/Qmf5XGU912AaktDFxRL94zko7Gq5yrzowMGCXrHC56AbxU"
 			]
 		}
 	},

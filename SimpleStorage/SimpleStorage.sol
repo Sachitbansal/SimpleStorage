@@ -35,7 +35,7 @@ contract SimpleStorage {
     // not writting antthing before the variable name is same as keeping tha variabel internal
 
     // this function takes external input and assigned it to some internal variable
-    function store(uint256 _favoriteNumber) public  {
+    function store(uint256 _favoriteNumber) public virtual {
         myFavoriteNUmber = _favoriteNumber;
     }
 
