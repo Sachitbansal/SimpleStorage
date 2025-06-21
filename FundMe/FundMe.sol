@@ -6,19 +6,26 @@ import {PriceConvertor} from "./PriceConvertor.sol";
 // Withdraw funds
 // Set a minimum funding value in USD
 
+// we can create our own custom error
+error NotOwner();
+// now we can use it in our onlyOwner modifier and remove the require which stores and string and would cost more gass
+
 contract FundMe {
+
+    // using const and immutable varaible helps makinfg the code gass efficient
+
     using PriceConvertor for uint256;
 
     // Public variables are meant to be stored in the contract storage, and their values must be constant or default-initialized at the time of contract deployment
-    uint256 public miniUSD = 5e18; // in terms of usd
+    uint256 public constant miniUSD = 5e18; // in terms of usd
 
     address[] public funders; // addresses of all who funded us
     mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
 
     // it is the first function called when the contract is deployed
-    address public owner;
+    address public immutable i_owner;
     constructor() {
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
 
     // we set the function as payable to accept currency
@@ -89,11 +96,31 @@ contract FundMe {
     // this is where modifier comes into play, we can ceate a keyword and set it use in functions
     // we dont give it visibility like functions
     modifier onlyOwner() {
-        require(msg.sender == owner, "must be owner");
-        _;
+        // require(msg.sender == i_owner, "must be owner");
+        // _;
 
         // role of underscore is that it acts as a place holder for the remaining funciotn
         // so like i caleld onlyowner so firstly the require line executes and then remaining contract is set into the underscore area 
         // where as if is move the underscore above the require line, then it first executues the function and then checks the require
+    
+        if (msg.sender != i_owner) {
+            revert NotOwner();
+            // now we do not need to store the string. 
+            // custom error is new for solidity.
+        }
+        _;
+    
     }   
+
+
+    // what happens when someone sent ETH without calling fund function? setting recieve for it
+    receive() external payable { 
+        fund();
+    }
+
+    fallback() external payable { 
+        fund();
+    }
+
+
 }
